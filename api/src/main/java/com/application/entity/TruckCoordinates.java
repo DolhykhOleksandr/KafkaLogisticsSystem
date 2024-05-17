@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TrackCoordinates {
+public class TruckCoordinates {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,5 +27,5 @@ public class TrackCoordinates {
 
     @ManyToOne
     @JsonBackReference
-    private Track track;
+    private Truck truck;
 }

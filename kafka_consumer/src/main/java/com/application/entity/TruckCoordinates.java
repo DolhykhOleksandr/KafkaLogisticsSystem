@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TrackCoordinates {
+public class TruckCoordinates {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,5 +20,5 @@ public class TrackCoordinates {
     private LocalDateTime createdAt;
 
     @ManyToOne
-    private Track track;
+    private Truck truck;
 }

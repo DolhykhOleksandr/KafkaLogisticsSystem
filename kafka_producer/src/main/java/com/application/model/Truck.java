@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Track {
+public class Truck {
     private Long id;
-    private TrackCoordinates coordinates;
+    private TruckCoordinates coordinates;
 }

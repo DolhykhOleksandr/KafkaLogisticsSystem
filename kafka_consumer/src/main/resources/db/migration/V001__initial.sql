@@ -19,17 +19,17 @@ CREATE TABLE if not exists users_roles
     PRIMARY KEY (user_id, role_id)
     );
 
-CREATE TABLE track (
+CREATE TABLE truck (
             id BIGSERIAL PRIMARY KEY
 );
 
-CREATE TABLE track_coordinates (
+CREATE TABLE truck_coordinates (
             id BIGSERIAL PRIMARY KEY,
             latitude DOUBLE PRECISION,
             longitude DOUBLE PRECISION,
             track_id BIGINT,
             created_at TIMESTAMP NOT NULL,
-            FOREIGN KEY (track_id) REFERENCES track(id)
+            FOREIGN KEY (track_id) REFERENCES truck(id)
 );
 
 INSERT INTO users (id, name, email, password)
