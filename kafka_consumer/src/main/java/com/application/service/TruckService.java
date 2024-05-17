@@ -1,10 +1,10 @@
 package com.application.service;
 
 import lombok.RequiredArgsConstructor;
-import com.application.entity.Track;
-import com.application.entity.TrackCoordinates;
-import com.application.repository.TrackCoordinatesRepository;
-import com.application.repository.TrackRepository;
+import com.application.entity.Truck;
+import com.application.entity.TruckCoordinates;
+import com.application.repository.TruckCoordinatesRepository;
+import com.application.repository.TruckRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,19 +12,19 @@ import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
-public class TrackService {
-    private final TrackRepository trackRepository;
-    private final TrackCoordinatesRepository coordinatesRepository;
+public class TruckService {
+    private final TruckRepository truckRepository;
+    private final TruckCoordinatesRepository coordinatesRepository;
 
     @Transactional
-    public Track save(Track track) {
-        Track saved = trackRepository.save(track);
-        coordinatesRepository.save(saved.getTrackCoordinatesList().getFirst());
+    public Truck save(Truck truck) {
+        Truck saved = truckRepository.save(truck);
+        coordinatesRepository.save(saved.getTruckCoordinatesList().getFirst());
         return saved;
     }
 
-    public TrackCoordinates parse(String input) {
-        TrackCoordinates coordinates = new TrackCoordinates();
+    public TruckCoordinates parse(String input) {
+        TruckCoordinates coordinates = new TruckCoordinates();
         coordinates.setLatitude(getLatitude(input));
         coordinates.setLongitude(getLongitude(input));
         coordinates.setCreatedAt(LocalDateTime.now());

@@ -11,6 +11,6 @@ public class KafkaProducerApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(KafkaProducerApplication.class, args);
         LogisticService logisticService = context.getBean(LogisticService.class);
-        logisticService.sendParallelTracks();
+        logisticService.sendParallelTrucks();
     }
 }

@@ -1,11 +1,11 @@
 package com.application.service;
 
+import com.application.entity.Truck;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import com.application.entity.Track;
-import com.application.entity.TrackCoordinates;
-import com.application.repository.TrackRepository;
+import com.application.entity.TruckCoordinates;
+import com.application.repository.TruckRepository;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
@@ -14,22 +14,22 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ConsumeService {
 
-    private final TrackService trackService;
-    private final TrackRepository trackRepository;
+    private final TruckService truckService;
+    private final TruckRepository truckRepository;
 
     @KafkaListener(topics = "topic")
     public void receiveMessage(ConsumerRecord<String, String> record) {
         log.info("receive message: {}", record);
         Long trackId = Long.parseLong(record.key());
-        Track track = trackRepository.findById(trackId).orElse(new Track());
-        if (track.getId() == null) {
-            track.setId(trackId);
+        Truck truck = truckRepository.findById(trackId).orElse(new Truck());
+        if (truck.getId() == null) {
+            truck.setId(trackId);
         }
-        TrackCoordinates coordinates = trackService.parse(record.value());
-        track.getTrackCoordinatesList().add(coordinates);
-        coordinates.setTrack(track);
-        trackService.save(track);
+        TruckCoordinates coordinates = truckService.parse(record.value());
+        truck.getTruckCoordinatesList().add(coordinates);
+        coordinates.setTruck(truck);
+        truckService.save(truck);
         log.info("Successfully received message: {}", record);
-        log.info("Successfully saved track: {}", track);
+        log.info("Successfully saved track: {}", truck);
     }
 }
